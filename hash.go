@@ -4,12 +4,19 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	return string(bytes), err
+// HashPassword принимает обычный пароль и возвращает его bcrypt-хеш.
+// Используется для хранения паролей в базе данных.
+func HashPassword(plainPassword string) (string, error) {
+	hashedBytes, err := bcrypt.GenerateFromPassword([]byte(plainPassword), bcrypt.DefaultCost)
+	if err != nil {
+		return "", err
+	}
+	return string(hashedBytes), nil
 }
 
-func CheckPasswordHash(hash, password string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+// CheckPasswordHash сравнивает bcrypt-хеш с паролем, введённым пользователем.
+// Возвращает true, если пароль совпадает, иначе false.
+func CheckPasswordHash(hashedPassword, plainPassword string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(plainPassword))
 	return err == nil
 }
