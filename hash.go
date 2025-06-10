@@ -4,10 +4,13 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// Cost уровень сложности bcrypt-хеширования (по умолчанию).
+const Cost = bcrypt.DefaultCost
+
 // HashPassword принимает обычный пароль и возвращает его bcrypt-хеш.
 // Используется для хранения паролей в базе данных.
 func HashPassword(plainPassword string) (string, error) {
-	hashedBytes, err := bcrypt.GenerateFromPassword([]byte(plainPassword), bcrypt.DefaultCost)
+	hashedBytes, err := bcrypt.GenerateFromPassword([]byte(plainPassword), Cost)
 	if err != nil {
 		return "", err
 	}
