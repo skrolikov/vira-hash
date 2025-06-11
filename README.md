@@ -12,7 +12,7 @@
 ## Установка
 
 ```bash
-go get github.com/yourusername/vira-hash
+go get github.com/skrolikov/vira-hash
 ```
 
 ## Использование
@@ -20,7 +20,7 @@ go get github.com/yourusername/vira-hash
 ### Хеширование пароля
 
 ```go
-import "github.com/yourusername/vira-hash/hash"
+import "github.com/skrolikov/vira-hash/hash"
 
 func main() {
     password := "user_password123"
@@ -37,7 +37,7 @@ func main() {
 ### Проверка пароля
 
 ```go
-import "github.com/yourusername/vira-hash/hash"
+import "github.com/skrolikov/vira-hash/hash"
 
 func main() {
     storedHash := "$2a$10$N9qo8uLOickgx2ZMRZoMy..." // Хеш из базы данных
